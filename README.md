@@ -4,7 +4,7 @@
 
 ## What is NCI?
 
-**NCI** is an end-to-end, sequence-to-sequence differentiable **document retrieval model** which retrieve relevant document identifiers directly for specific queries. In our evaluation on [Google NQ dataset](https://ai.google.com/research/NaturalQuestions), NCI outperforms all baselines and model-based indexers:
+**NCI** is an end-to-end, sequence-to-sequence differentiable **document retrieval model** which retrieve relevant document identifiers directly for specific queries. In our evaluation on [Google NQ dataset](https://ai.google.com/research/NaturalQuestions/) and [TriviaQA dataset](https://nlp.cs.washington.edu/triviaqa/), NCI outperforms all baselines and model-based indexers:
 
 | Model | Recall@1 | Recall@10 | Recall@100 | MRR@100 |
 |:-------:|:--------:|:-----:|:-----:|:-------:|
@@ -33,47 +33,47 @@ Wang Y, Hou Y, Wang H, et al. A Neural Corpus Indexer for Document Retrieval[J].
 
 ```bash
 git clone https://github.com/solidsea98/Neural-Corpus-Indexer-NCI.git
-cd NCI
+cd Neural-Corpus-Indexer-NCI
 ```
 
 [3] Create conda environment:
 
 ```bash
 conda env create -f environment.yml
-source activate NCI
+conda activate NCI
 ```
 ## Data Process
 
-You can process data with [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb).
+You can process data with [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb) and [Trivia_dataset_Process.ipynb](./Data_process/trivia_dataset/Trivia_dataset_Process.ipynb).
 
-### NQ dataset download.
+### Dataset Download.
 
-Currently NCI is evaluated on [Google NQ dataset](https://ai.google.com/research/NaturalQuestions). Please download it before re-training and evalution.
+Currently NCI is evaluated on [Google NQ dataset](https://ai.google.com/research/NaturalQuestions) and [TriviaQA dataset](https://nlp.cs.washington.edu/triviaqa/data/triviaqa-rc.tar.gz). Please download it before re-training.
 
 
 ### Semantic Identifier
 
 NCI uses content-based document identifiers: A pre-trained BERT is used to generate document embeddings, and then documents are clustered using hierarchical K-means and semantic identifiers are assigned to each document. You can generate several embeddings and semantic identifiers to run NCI model for ensembling.
 
-Please find more details in [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb).
+Please find more details in [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb) and [Trivia_dataset_Process.ipynb](./Data_process/trivia_dataset/Trivia_dataset_Process.ipynb).
 
 
 ### Query Generation
 
 In our study, Query Generation can significantly improve retrieve performance, especially for long-tail queries.
 
-NCI uses [docTTTTTquery](https://github.com/castorini/docTTTTTquery) checkpoint to generate synthetic queries. Please refer to docTTTTTquery documentation and find more details in [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb).
+NCI uses [docTTTTTquery](https://github.com/castorini/docTTTTTquery) checkpoint to generate synthetic queries. Please refer to docTTTTTquery documentation and find more details in [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb) and [Trivia_dataset_Process.ipynb](./Data_process/trivia_dataset/Trivia_dataset_Process.ipynb).
 
 
 ## Training
 
-Once the data pre-processing is complete, you can launch training by [train.sh](./NCI_model/train.sh). You can also launch training along with [our data](https://drive.google.com/drive/folders/1epfUw4yQjAtqnZTQDLAUOwTJg-YMCGdD?usp=sharing) (Download it to './Data_process/NQ_dataset/').
+Once the data pre-processing is complete, you can launch training by [train.sh](./NCI_model/train.sh). You can also launch training along with our [NQ data](https://drive.google.com/drive/folders/1epfUw4yQjAtqnZTQDLAUOwTJg-YMCGdD?usp=sharing) (Download it to './Data_process/NQ_dataset/') and [TriviaQA data](https://drive.google.com/drive/folders/1_abDsHRUQabwDmBM7sk_NyMuia5X_VMK?usp=sharing) (Download it to './Data_process/trivia_dataset/').
 
 
 ## Evaluation
-Please use [eval.sh](./NCI_model/eval.sh) along with [our checkpoint](https://drive.google.com/file/d/1SITW9d7XLai6wSvu_f_8AYz38c7FQOBB/view?usp=sharing) (Download it to ['./NCI_model/logs/'](./NCI_model/logs/)) or your own checkpoint to evaluate model performance.
+Please use [infer.sh](./NCI_model/infer.sh) along with our [NQ checkpoint](https://drive.google.com/file/d/1SITW9d7XLai6wSvu_f_8AYz38c7FQOBB/view?usp=sharing) or [TriviaQA checkpoint](https://drive.google.com/file/d/1XCA-XMDIZAZnlqecZrXzurKoZe7CzQhO/view?usp=sharing) (Download it to './NCI_model/logs/'). You can also inference with your own checkpoint to evaluate model performance.
 
-Please [ensemble](./NCI_model/ensemble_NQ.ipynb) along with [our results](https://drive.google.com/drive/folders/14TN0lEKHMh5eB5CBTWUp8SSwggiRXex3?usp=sharing) (Download it to ['./NCI_model/logs/'](./NCI_model/logs/)) or your own results.
+Please ensemble [NQ dataset](./NCI_model/ensemble_NQ.ipynb) or [TriviaQA dataset](./NCI_model/ensemble_trivia.ipynb) along with [our results](https://drive.google.com/drive/folders/14TN0lEKHMh5eB5CBTWUp8SSwggiRXex3?usp=sharing) (Download it to './NCI_model/logs/') or your own results.
 
 
 ## Acknowledgement

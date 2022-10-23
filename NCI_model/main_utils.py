@@ -190,10 +190,10 @@ def load_data(args):
 
         if 'qg' in args.query_type:
             if args.trivia:
-                qg_file = '../Data_process/trivia_dataset/docpool_qg.tsv'
+                qg_file = '../Data_process/trivia_dataset/trivia_512_qg.tsv'
                 gq_df1 = pd.read_csv(
                     qg_file,
-                    names=["query", "queryid", "oldid", "bert_k30_c30_1", "bert_k30_c30_2", "bert_k30_c30_3", "bert_k30_c30_4", "bert_k30_c30_5"],
+                    names=["query", "oldid", "bert_k30_c30_1", "bert_k30_c30_2", "bert_k30_c30_3", "bert_k30_c30_4", "bert_k30_c30_5"],
                     encoding='utf-8', quoting=3, header=None, sep='\t',
                     dtype={'query': str, 'queryid': str, "oldid": str, args.id_class: str}).loc[:,
                         ["query", args.id_class]]
@@ -234,7 +234,7 @@ def load_data(args):
     path_list = []
     if 'doc' in args.query_type:
         if args.trivia:
-            filename = '../Data_process/trivia_dataset/trivia_dataset/Triva_doc.tsv'
+            filename = '../Data_process/trivia_dataset/trivia_title_cont.tsv'
             path_list.append(filename)
         elif args.nq:
             filename = '../Data_process/NQ_dataset/nq_title_abs.tsv'
@@ -242,7 +242,7 @@ def load_data(args):
         
     if 'doc_aug' in args.query_type:
         if args.trivia:
-            filename = '../Data_process/trivia_dataset/triava_doc_aug.tsv'
+            filename = '../Data_process/trivia_dataset/trivia_doc_aug.tsv'
             path_list.append(filename)
         elif args.nq:
             filename = '../Data_process/NQ_dataset/NQ_doc_aug.tsv'
@@ -285,8 +285,8 @@ def load_data_infer(args):
     df = None
     if args.test_set == 'dev':
         if args.trivia:
-            dev_file = '../Data_process/trivia_dataset/valid_multi.tsv'
-            test_file = '../Data_process/trivia_dataset/test_multi.tsv'
+            dev_file = '../Data_process/trivia_dataset/dev.tsv'
+            test_file = '../Data_process/trivia_dataset/test.tsv'
             df = pd.read_csv(
                     dev_file,
                     encoding='utf-8', names=["query", "queryid", "oldid", "bert_k30_c30_1", "bert_k30_c30_2", "bert_k30_c30_3", "bert_k30_c30_4", "bert_k30_c30_5"],
