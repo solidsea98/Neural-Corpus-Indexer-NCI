@@ -42,6 +42,10 @@ cd Neural-Corpus-Indexer-NCI
 conda env create -f environment.yml
 conda activate NCI
 ```
+[4] Docker:
+
+If necessary, the NCI docker is mzmssg/corpus_env:latest.
+
 ## Data Process
 
 You can process data with [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb) and [Trivia_dataset_Process.ipynb](./Data_process/trivia_dataset/Trivia_dataset_Process.ipynb).
