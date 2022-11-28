@@ -74,34 +74,20 @@ def main(args):
     text_id_all = list(id_doc_dict.keys())
     text_list_all = [id_doc_dict[id_] for id_ in text_id_all]
 
-    base = int(len(text_list_all) / 8)
+    base = int(len(text_list_all) / args.partition_num)
     
     text_partitation = []
     text_partitation_id = []
 
     text_partitation.append(text_list_all[:base])
     text_partitation_id.append(text_id_all[:base])
+    
+    for i in range(args.partition_num-2):
+        text_partitation.append(text_list_all[(i+1)*base: (i+2)*base])
+        text_partitation_id.append(text_id_all[(i+1)*base: (i+2)*base])
 
-    text_partitation.append(text_list_all[base: 2 * base])
-    text_partitation_id.append(text_id_all[base: 2 * base])
-
-    text_partitation.append(text_list_all[2 * base: 3 * base])
-    text_partitation_id.append(text_id_all[2 * base: 3 * base])
-
-    text_partitation.append(text_list_all[3 * base: 4 * base])
-    text_partitation_id.append(text_id_all[3 * base: 4 * base])
-
-    text_partitation.append(text_list_all[4 * base: 5 * base])
-    text_partitation_id.append(text_id_all[4 * base: 5 * base])
-
-    text_partitation.append(text_list_all[5 * base: 6 * base])
-    text_partitation_id.append(text_id_all[5 * base: 6 * base])
-
-    text_partitation.append(text_list_all[6 * base: 7 * base])
-    text_partitation_id.append(text_id_all[6 * base: 7 * base])
-
-    text_partitation.append(text_list_all[7 * base:  ])
-    text_partitation_id.append(text_id_all[7 * base:  ])
+    text_partitation.append(text_list_all[(i+2)*base:  ])
+    text_partitation_id.append(text_id_all[(i+2)*base:  ])
 
     output_qg = []
     output_docid = []
@@ -143,12 +129,11 @@ def main(args):
     pickle.dump(output_docid, output)
     output.close()
 
-    
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Options for Commonsense Knowledge Base Completion')
 
     parser.add_argument("--idx", type=int, default=0, help="partitation")
+    parser.add_argument("--partition_num", type=int, default=8, help="partitation")
     parser.add_argument("--dataset", type=str, default='NQ', help="partitation")
     parser.add_argument("--max_len", type=int, default=64, help="max length")
     parser.add_argument("--return_num", type=int, default=20, help="return num")
