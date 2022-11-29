@@ -27,7 +27,7 @@ def main(args):
     text_list_all = []
     text_id_all = []
     i = 0
-    batch_size = 40
+    batch_size = 20
 
     while (i < int(len(ids) / batch_size) - 1):
         id_list = ids[i * batch_size: (i + 1) * batch_size]
@@ -69,11 +69,11 @@ def main(args):
         output_id_tensor.extend(text_partitation_id[args.idx][count])
         count += 1
 
-    output = open(f'pkl/{args.dataset}_outpt_tensor_{args.max_len}_content_{args.idx}.pkl', 'wb', -1)
+    output = open(f'pkl/{args.dataset}_output_tensor_{args.max_len}_content_{args.idx}.pkl', 'wb', -1)
     pickle.dump(output_tensor, output)
     output.close()
 
-    output = open(f'pkl/{args.dataset}_outpt_tensor_{args.max_len}_content_{args.idx}_id.pkl', 'wb', -1)
+    output = open(f'pkl/{args.dataset}_output_tensor_{args.max_len}_content_{args.idx}_id.pkl', 'wb', -1)
     pickle.dump(output_id_tensor, output)
     output.close()
 

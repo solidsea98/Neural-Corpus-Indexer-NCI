@@ -121,11 +121,11 @@ def main(args):
             output_qg.append(g)
             output_docid.append(text_partitation_id[args.idx][i])
 
-    output = open(f'pkl/{args.dataset}_outpt_tensor_512_content_{args.max_len}_{args.return_num}_{args.idx}.pkl', 'wb', -1)
+    output = open(f'pkl/{args.dataset}_output_tensor_512_content_{args.max_len}_{args.return_num}_{args.idx}.pkl', 'wb', -1)
     pickle.dump(output_qg, output)
     output.close()
 
-    output = open(f'pkl/{args.dataset}_outpt_tensor_512_content_{args.max_len}_{args.return_num}_{args.idx}_id.pkl', 'wb', -1)
+    output = open(f'pkl/{args.dataset}_output_tensor_512_content_{args.max_len}_{args.return_num}_{args.idx}_id.pkl', 'wb', -1)
     pickle.dump(output_docid, output)
     output.close()
 
