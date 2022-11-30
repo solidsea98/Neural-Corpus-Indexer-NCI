@@ -48,7 +48,7 @@ If necessary, the NCI docker is mzmssg/corpus_env:latest.
 
 ## Data Process
 
-You can process data with [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb) and [Trivia_dataset_Process.ipynb](./Data_process/trivia_dataset/Trivia_dataset_Process.ipynb).
+You can process data with [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb) and [Trivia_dataset_Process.ipynb](./Data_process/Trivia_dataset/Trivia_dataset_Process.ipynb).
 
 ### Dataset Download.
 
@@ -59,7 +59,7 @@ Currently NCI is evaluated on [Google NQ dataset](https://ai.google.com/research
 
 NCI uses content-based document identifiers: A pre-trained BERT is used to generate document embeddings, and then documents are clustered using hierarchical K-means and semantic identifiers are assigned to each document. You can generate several embeddings and semantic identifiers to run NCI model for ensembling.
 
-Please find more details in [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb) and [Trivia_dataset_Process.ipynb](./Data_process/trivia_dataset/Trivia_dataset_Process.ipynb).
+Please find more details in [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb) and [Trivia_dataset_Process.ipynb](./Data_process/Trivia_dataset/Trivia_dataset_Process.ipynb).
 
 
 ### Query Generation
