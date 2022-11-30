@@ -66,7 +66,7 @@ Please find more details in [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset
 
 In our study, Query Generation can significantly improve retrieve performance, especially for long-tail queries.
 
-NCI uses [docTTTTTquery](https://github.com/castorini/docTTTTTquery) checkpoint to generate synthetic queries. Please refer to docTTTTTquery documentation and find more details in [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb) and [Trivia_dataset_Process.ipynb](./Data_process/trivia_dataset/Trivia_dataset_Process.ipynb).
+NCI uses [docTTTTTquery](https://github.com/castorini/docTTTTTquery) checkpoint to generate synthetic queries. Please refer to docTTTTTquery documentation and find more details in [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb) and [Trivia_dataset_Process.ipynb](./Data_process/Trivia_dataset/Trivia_dataset_Process.ipynb).
 
 
 ## Training
