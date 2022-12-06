@@ -4,7 +4,7 @@
 INFER_CKPT='' 
 BEAM_SIZE=100
 
-# Set args to be the same as training.
+# Set args to be the same as training. For example, if you set --id_class bert_k30_c30_1 when training, set --id_class bert_k30_c30_1 in infer.sh
 # Dataset: set (--nq 0 -- trivia 1 --id_class bert_k30_c30_4) or (--nq 1 -- trivia 0 --id_class bert_k30_c30_5) with our checkpoint.
 # CUDA_VISIBLE_DEVICES=1 
 python main.py --decode_embedding 2 --n_gpu 1 --mode eval --query_type gtq_doc_aug_qg --adaptor_layer_num 2 \
