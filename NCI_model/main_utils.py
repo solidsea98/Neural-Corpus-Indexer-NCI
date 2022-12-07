@@ -189,6 +189,7 @@ def load_data(args):
             for [query, docid] in df.values.tolist():
                 doc_to_query_list[docid].add(query)
 
+        ## Query Generation Data
         if 'qg' in args.query_type:
             if args.trivia:
                 qg_file = '../Data_process/Trivia_dataset/trivia_512_qg.tsv'
@@ -200,7 +201,7 @@ def load_data(args):
                         ["query", args.id_class]]
                 gq_df1 = gq_df1.dropna(axis=0)
             elif args.nq:
-                qg_file = '../Data_process/NQ_dataset/nq_512_qg.tsv'
+                qg_file = '../Data_process/NQ_dataset/NQ_512_qg.tsv'
                 gq_df1 = pd.read_csv(
                     qg_file,
                     names=["query", "queryid", "oldid", "bert_k30_c30_1", "bert_k30_c30_2", "bert_k30_c30_3", "bert_k30_c30_4", "bert_k30_c30_5"],
