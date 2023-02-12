@@ -8,9 +8,12 @@
 
 |       Model        | Recall@1  | Recall@10 | Recall@100 |  MRR@100  |
 | :----------------: | :-------: | :-------: | :--------: | :-------: |
-| **NCI (Ensemble)** | **70.46** | **89.35** | **94.75**  | **77.82** |
-|  **NCI (Large)**   | **66.23** | **85.27** | **92.49**  | **73.37** |
-|   **NCI (Base)**   | **65.86** | **85.20** | **92.42**  | **73.12** |
+| **NCI w/ qg-ft (Ensemble)** | **72.78** | **91.76** | **96.22**  | **80.12** |
+| NCI (Ensemble) | 70.46 | 89.35 | 94.75 | 77.82 |
+|  NCI w/ qg-ft (Large)   | 68.65 | 88.45 | 94.53  | 76.10 |
+|   NCI w/ qg-ft (Base)   | 68.91 | 88.48 | 94.48  | 76.17 |
+|  NCI (Large)   | 66.23 | 85.27 | 92.49  | 73.37 |
+|   NCI (Base)   | 65.86 | 85.20 | 92.42  | 73.12 |
 |   DSI (T5-Base)    |   27.40   |   56.60   |     --     |    --     |
 |   DSI (T5-Large)   |   35.60   |   62.60   |     --     |    --     |
 |    SEAL (Large)    |   59.93   |   81.24   |   90.93    |   67.70   |
@@ -63,9 +66,31 @@ NCI uses content-based document identifiers: A pre-trained BERT is used to gener
 
 In our study, Query Generation can significantly improve retrieve performance, especially for long-tail queries.
 
-NCI uses [docTTTTTquery](https://github.com/castorini/docTTTTTquery) checkpoint to generate synthetic queries. Please refer to docTTTTTquery documentation. 
+NCI uses [docTTTTTquery](https://github.com/castorini/docTTTTTquery) checkpoint to generate synthetic queries. If you finetune [docTTTTTquery](https://github.com/castorini/docTTTTTquery) checkpoint, the query generation files can make the retrieval result even better. We show how to finetune the model. The following command will finetune the model for 4k iterations to predict queries. We assume you put the tsv training file in gs://your_bucket/qcontent_train_512.csv (download from above). Also, change your_tpu_name, your_tpu_zone, your_project_id, and your_bucket accordingly.
+
+```
+t5_mesh_transformer  \
+  --tpu="your_tpu_name" \
+  --gcp_project="your_project_id" \
+  --tpu_zone="your_tpu_zone" \
+  --model_dir="gs://your_bucket/models/" \
+  --gin_param="init_checkpoint = 'gs://your_bucket/model.ckpt-1004000'" \
+  --gin_file="dataset.gin" \
+  --gin_file="models/bi_v1.gin" \
+  --gin_file="gs://t5-data/pretrained_models/base/operative_config.gin" \
+  --gin_param="utils.run.train_dataset_fn = @t5.models.mesh_transformer.tsv_dataset_fn" \
+  --gin_param="tsv_dataset_fn.filename = 'gs://your_bucket/qcontent_train_512.csv'" \
+  --gin_file="learning_rate_schedules/constant_0_001.gin" \
+  --gin_param="run.train_steps = 1008000" \
+  --gin_param="tokens_per_batch = 131072" \
+  --gin_param="utils.tpu_mesh_shape.tpu_topology ='v2-8'"
+ ```
+
+Please refer to docTTTTTquery documentation. 
 
 Find more details in [NQ_dataset_Process.ipynb](./Data_process/NQ_dataset/NQ_dataset_Process.ipynb) and [Trivia_dataset_Process.ipynb](./Data_process/Trivia_dataset/Trivia_dataset_Process.ipynb).
+
+
 
 
 ## Training
