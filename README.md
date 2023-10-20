@@ -110,9 +110,11 @@ If you find this work useful for your research, please cite:
 
 ```
 @article{wang2022neural,
-  title={A Neural Corpus Indexer for Document Retrieval},
-  author={Wang, Yujing and Hou, Yingyan and Wang, Haonan and Miao, Ziming and Wu, Shibin and Sun, Hao and Chen, Qi and Xia, Yuqing and Chi, Chengmin and Zhao, Guoshuai and others},
-  journal={arXiv preprint arXiv:2206.02743},
+  title={A neural corpus indexer for document retrieval},
+  author={Wang, Yujing and Hou, Yingyan and Wang, Haonan and Miao, Ziming and Wu, Shibin and Chen, Qi and Xia, Yuqing and Chi, Chengmin and Zhao, Guoshuai and Liu, Zheng and others},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={25600--25614},
   year={2022}
 }
 ```
